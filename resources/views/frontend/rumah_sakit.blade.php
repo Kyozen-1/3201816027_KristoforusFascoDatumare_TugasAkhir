@@ -8,13 +8,13 @@
 @section('content')
 <div id="peta" style="margin-top: 10px;margin-bottom: 100px;width: 100%; height: 600px;"></div>
 <div id="table-data-rs" style="margin-right: 49px;margin-left: 50px;margin-bottom: 50px;">
-    <h2 class="text-center" style="margin-bottom: 20px;">Data Rumah Sakit</h2>
+    <h2 class="text-center" style="margin-bottom: 20px;">Data Rumah Sakit Rujukan</h2>
     <p class="text-right">Pertanggal: <span id="tanggal_data"></span></p>
     <div class="table-responsive text-center">
         <table class="table table-bordered" id="table_rs_kecamatan">
-            <thead class="thead-dark justify-content-center">
+            <thead class="thead-dark">
                 <tr class="text-center">
-                    <th class="text-center" style="text-align: center;">Nama Rumah Sakit</th>
+                    <th class="text-center">Nama Rumah Sakit</th>
                     <th class="text-center">Ketersediaan&nbsp;<br>tempat&nbsp;tidur&nbsp;<br>ICU<br></th>
                     <th class="text-center">Jumlah&nbsp;Tempat&nbsp;Tidur&nbsp;<br>ICU&nbsp;Terisi&nbsp;Pasien&nbsp;Positif&nbsp;<br>Covid-19&nbsp;+&nbsp;Suspek<br></th>
                     <th class="text-center">BOR&nbsp;ICU&nbsp;(%)<br></th>

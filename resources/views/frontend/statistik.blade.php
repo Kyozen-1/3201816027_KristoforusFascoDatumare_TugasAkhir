@@ -42,7 +42,7 @@
     <div class="map-overlay" id="legend"></div>
 </div>
 <div class="text-center" id="statistik" style="margin-top: 45px;margin-right: 50px;margin-left: 50px;">
-    <h2 class="text-center mb-2">Tren Data Positif Covid-19 di Kota Pontianak</h2>
+    <h2 class="text-center mb-2">Tren Data Covid-19 di Kota Pontianak</h2>
     <div class="row" style="margin-bottom: 10px;margin-top: 10px;" id="filter">
         <div class="col-md-6 text-right"></div>
         <div class="col-md-6 text-right align-self-center">

@@ -30,13 +30,13 @@
                     @endif
                 </li>
             </ul>
-            @if (Route::has('login'))
+            {{-- @if (Route::has('login'))
                 @auth
                     <a class="btn btn-primary" role="button" href="{{route('dashboard')}}">Admin Panel</a>
                 @else
                     <a class="btn btn-primary" role="button" href="{{route('login')}}">Login</a>
                 @endauth
-            @endif
+            @endif --}}
         </div>
     </div>
 </nav>

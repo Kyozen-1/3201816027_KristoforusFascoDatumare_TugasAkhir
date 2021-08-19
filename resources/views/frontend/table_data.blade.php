@@ -67,7 +67,7 @@
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-checkable" id="table_kecamatan{{$kecamatan->id}}">
-                    <thead>
+                    <thead class="thead-dark justify-content-center">
                         <tr>
                             <th>No</th>
                             <th>Nama Kelurahan</th>

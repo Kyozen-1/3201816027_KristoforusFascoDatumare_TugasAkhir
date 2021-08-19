@@ -7,7 +7,7 @@
         <li class="list-inline-item"><a href="{{route('statistik')}}">Statistik</a></li>
         <li class="list-inline-item"><a href="statistik.html">Tabel Data Covid-19</a></li>
         <li class="list-inline-item"><a href="{{route('rumah_sakit')}}">Rumah Sakit Rujukan</a></li>
-        <li class="list-inline-item">
+        {{-- <li class="list-inline-item">
         @if (Route::has('login'))
             @auth
                 <a class="btn btn-primary" role="button" href="{{route('dashboard')}}" style="color:white;">Admin Panel</a>
@@ -15,7 +15,7 @@
                 <a class="btn btn-primary" role="button" href="{{route('login')}}" style="color:white;">Login</a>
             @endauth
         @endif
-        </li>
+        </li> --}}
     </ul>
     <p class="copyright">Kyozen © 2021</p>
 </footer>

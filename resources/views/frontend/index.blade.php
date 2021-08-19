@@ -23,9 +23,9 @@
         padding: 10px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         line-height: 18px;
-        height: 110px;
+        height: 100px;
         margin-bottom: 40px;
-        width: 200px;
+        width: 150px;
     }
 
     .legend-key {
@@ -117,8 +117,8 @@
             map.setZoom(12);
         });
         map.addControl(new mapboxgl.NavigationControl());
-        var layers = ['Zona Merah', 'Zona Orange Tua','Zona Orange', 'Zona Kuning', 'Zona Kuning Muda'];
-        var colors = ['#f71010', '#f76b13','#f7910e', '#f5ce0f', '#f7f164' ];
+        var layers = ['Zona Merah', 'Zona Orange', 'Zona Kuning', 'Zona Hijau'];
+        var colors = ['#fb2205', '#ff9302','#ffe309', '#019f43' ];
         for(i = 0; i < layers.length; i++)
         {
             var layer = layers[i];
