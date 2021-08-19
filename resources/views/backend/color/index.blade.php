@@ -46,7 +46,7 @@
                         <tr class="text-center">
                             <th width="10%">No</th>
                             <th width="30%">Nama</th>
-                            <th width="20%">Hexa Color</th>
+                            <th width="20%">Warna</th>
                             <th width="20%">Keterangan</th>
                             <th width="20%">Actions</th>
                         </tr>
@@ -79,7 +79,7 @@
                         </div>                        
                     </div>
                     <div class="form-group row">
-                        <label for="color" class="control-label col-md-4 align-self-center">Color</label>
+                        <label for="color" class="control-label col-md-4 align-self-center">Warna</label>
                         <div class="col-md-8">
                             <input type="color" class="form-control" name="color" id="color" autocomplete="off" required>
                         </div>                        
@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="detail_color" class="control-label col-md-4 align-self-center">Color</label>
+                    <label for="detail_color" class="control-label col-md-4 align-self-center">Warna</label>
                     <div class="col-md-8">
                         <input type="color" class="form-control" id="detail_color" disabled>
                     </div>
