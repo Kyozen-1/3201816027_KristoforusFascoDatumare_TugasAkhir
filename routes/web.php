@@ -36,7 +36,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 @include('kecamatan.php');
 
 //Kelurahan
-@include('Kelurahan.php');
+@include('kelurahan.php');
 
 //Covid-19 Kelurahan
 @include('c19_klh.php');
