@@ -26,21 +26,34 @@
                                     <th>Positif</th>
                                     <th>Positif dirawat(isolasi)</th>
                                     <th>Meninggal</th>
-                                    <th>Warna</th>
+                                    {{-- <th>Warna</th> --}}
                                     <th>Tanggal</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="add_tbody"></tbody>
+                            <tbody id="add_tbody">
+                            </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="7" align="right">&nbsp;</td>
-                                    <td class="text-right">
-                                        <a class="btn btn-danger font-weight-bold" href="{{route('c19_klh.index')}}">Batal</a>
+                                    <td colspan="2">
+                                        <label>Zona Ketetapan Pemerintah</label>
                                     </td>
-                                    <td>
+                                    <td colspan="6">
+                                        <select name="zona" id="zona" class="form-control" required>
+                                            @foreach ($zonas as $zona)
+                                                <option value="{{$zona->id}}">{{$zona->nama}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" align="right">&nbsp;</td>
+                                    <td class="text-right">
                                         @csrf
                                         <input type="submit" class="btn btn-primary font-weight-bold" name="coba_save" id="coba_save" value="Save">
+                                    </td>
+                                    <td class="text-right">
+                                        <a class="btn btn-danger font-weight-bold" href="{{route('c19_klh.index')}}">Batal</a>
                                     </td>
                                 </tr>
                             </tfoot>
@@ -55,7 +68,7 @@
 @section('js')
     <script>
         var myOptions = '@foreach($kelurahans as $kelurahan) <option value="{{$kelurahan->id}}">{{$kelurahan->nama}}</option> @endforeach';
-        var myColors = '@foreach($colors as $color) <option value="{{$color->color}}" style="style:{{$color->color}};">{{$color->nama}}</option> @endforeach';
+        // var myColors = '@foreach($colors as $color) <option value="{{$color->color}}" style="style:{{$color->color}};">{{$color->nama}}</option> @endforeach';
         var count = 1;
         $('#coba_form_result').html('');
         dynamic_field(count);
@@ -69,9 +82,9 @@
             html += '<td><input type="number" class="form-control" name="positif[]" autocomplete="off" value="0" required/></td>';
             html += '<td><input type="number" class="form-control" name="positif_isolasi[]" autocomplete="off" value="0" required/></td>';
             html += '<td><input type="number" class="form-control" name="meninggal[]" autocomplete="off" value="0" required/></td>';
-            html += '<td><select class="form-control" name="warna_select[]" required>';
-            html += '<option value="">Pilih Warna</option>'+myColors;
-            html += '</select></td>';
+            // html += '<td><select class="form-control" name="warna_select[]" required>';
+            // html += '<option value="">Pilih Warna</option>'+myColors;
+            // html += '</select></td>';
             html += '<td><input type="date" class="form-control" name="tanggal[]" autocomplete="off" required/></td>';
             if(number > 1)
             {

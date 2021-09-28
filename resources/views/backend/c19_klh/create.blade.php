@@ -26,7 +26,7 @@
                                     <th>Positif</th>
                                     <th>Positif (Isolasi)</th>
                                     <th>Meninggal</th>
-                                    <th>Warna</th>
+                                    {{-- <th>Warna</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,19 +38,29 @@
                                     <td><input type="number" class="form-control" name="positif{{$kelurahan->id}}" id="positif" autocomplete="off" value="0" required></td>
                                     <td><input type="number" class="form-control" name="positif_isolasi{{$kelurahan->id}}" id="positif_isolasi" autocomplete="off" value="0" required></td>
                                     <td><input type="number" class="form-control" name="meninggal{{$kelurahan->id}}" id="meninggal" autocomplete="off" value="0" required></td>
-                                    <td>
+                                    {{-- <td>
                                         <select name="color{{$kelurahan->id}}" id="color" class="form-control selectpicker" required>
                                             @foreach ($colors as $color)
                                                 <option value="{{$color->color}}" style="color:{{$color->color}};">{{$color->nama}}</option>
                                             @endforeach
                                         </select>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @endforeach
                                 <tr>
                                     <td><label>Tanggal</label></td>
                                     <td colspan="6">
                                         <input type="date" class="form-control" name="tgl" id="tgl" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Zona Ketetapan Pemerintah</label></td>
+                                    <td colspan="6">
+                                        <select name="zona" id="zona" class="form-control selectpicker" required>
+                                            @foreach ($zonas as $zona)
+                                                <option value="{{$zona->id}}">{{$zona->nama}}</option>
+                                            @endforeach
+                                        </select>
                                     </td>
                                 </tr>
                             </tbody>

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Zona;
+use App\Models\RentangWarnaZona;
 use App\Models\C19_Klh;
 use App\Models\Kelurahan;
 use App\Models\Color;
@@ -121,7 +122,8 @@ class C19KelurahanController extends Controller
     {
         $kelurahans = Kelurahan::all();
         $colors = Color::all();
-        return view('backend.c19_klh.create', compact('kelurahans', 'colors'));
+        $zonas = Zona::all();
+        return view('backend.c19_klh.create', compact('kelurahans', 'colors', 'zonas'));
     }
 
     /**
@@ -138,18 +140,27 @@ class C19KelurahanController extends Controller
         {
             foreach ($kelurahans as $kelurahan) {
                 $errors = Validator::make($request->all(), [
+                    'zona' => 'required',
                     'id_kelurahan'.$kelurahan->id => 'required',
                     'kontak_erat'.$kelurahan->id => 'required|integer|min:0',
                     'suspek'.$kelurahan->id => 'required|integer|min:0',
                     'positif'.$kelurahan->id => 'required|integer|min:0',
                     'positif_isolasi'.$kelurahan->id => 'required|integer|min:0',
                     'meninggal'.$kelurahan->id => 'required|integer|min:0',
-                    'color'.$kelurahan->id => 'required',
                     'tgl' =>'required'
                 ]);
                 if($errors -> fails())
                 {
                     return back()->with('errors', $errors->messages()->all()[0])->withInput();
+                }
+                $rwzs = RentangWarnaZona::where('zona_id', $request->zona)->get();
+                $warna ='';
+                foreach($rwzs as $rwz)
+                {
+                    if($rwz->awal <= $request->input('positif_isolasi'.$kelurahan->id) && $request->input('positif_isolasi'.$kelurahan->id) <= $rwz->akhir)
+                    {
+                        $warna = $rwz->hexa_warna;
+                    }
                 }
                 $data[] = array(
                     'id_kelurahan' => $request->input('id_kelurahan'.$kelurahan->id),
@@ -158,7 +169,7 @@ class C19KelurahanController extends Controller
                     'positif' => $request->input('positif'.$kelurahan->id),
                     'positif_isolasi' => $request->input('positif_isolasi'.$kelurahan->id),
                     'meninggal' => $request->input('meninggal'.$kelurahan->id),
-                    'color' => $request->input('color'.$kelurahan->id),
+                    'color' => $warna,
                     'tgl' => $request->tgl
                 );
             }
@@ -175,7 +186,8 @@ class C19KelurahanController extends Controller
     {
         $kelurahans = Kelurahan::all();
         $colors = Color::all();
-        return view('backend.c19_klh.sps', compact('kelurahans', 'colors'));
+        $zonas = Zona::all();
+        return view('backend.c19_klh.sps', compact('kelurahans', 'colors', 'zonas'));
     }
 
     public function coba_insert(Request $request)
@@ -183,13 +195,14 @@ class C19KelurahanController extends Controller
         if($request->ajax())
         {
             $errors = Validator::make($request->all(), [
+                'zona' => 'required',
                 'coba_select.*' => 'required | min:1',
                 'kontak_erat.*' => 'required|integer|min:0',
                 'suspek.*' => 'required|integer|min:0',
                 'positif.*' => 'required|integer|min:0',
                 'positif_isolasi.*' => 'required|integer|min:0',
                 'meninggal.*' => 'required|integer|min:0',
-                'warna_select.*' => 'required',
+                // 'warna_select.*' => 'required',
                 'tanggal.*' => 'required'
             ]);
 
@@ -204,11 +217,20 @@ class C19KelurahanController extends Controller
             $positif = $request->positif;
             $positif_isolasi = $request->positif_isolasi;
             $meninggal = $request->meninggal;
-            $warna_select = $request->warna_select;
+            // $warna_select = $request->warna_select;
             $tanggal = $request->tanggal;
 
             for($count = 0; $count < count($coba_select); $count++)
             {
+                $rwzs = RentangWarnaZona::where('zona_id', $request->zona)->get();
+                $warna ='';
+                foreach($rwzs as $rwz)
+                {
+                    if($rwz->awal <= $positif_isolasi[$count] && $positif_isolasi[$count] <= $rwz->akhir)
+                    {
+                        $warna = $rwz->hexa_warna;
+                    }
+                }
                 $data = array(
                     'id_kelurahan' => $coba_select[$count],
                     'kontak_erat' => $kontak_erat[$count],
@@ -216,7 +238,7 @@ class C19KelurahanController extends Controller
                     'positif' => $positif[$count],
                     'positif_isolasi' => $positif_isolasi[$count],
                     'meninggal' => $meninggal[$count],
-                    'color' => $warna_select[$count],
+                    'color' => $warna,
                     'tgl'=> $tanggal[$count]
                 );
                 $klh = Kelurahan::where('id', $coba_select[$count])->first();

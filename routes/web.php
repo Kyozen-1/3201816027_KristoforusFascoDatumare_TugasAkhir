@@ -61,4 +61,10 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 
 //Color
 @include('color.php');
+
+//Zona
+@include('zona.php');
+
+//Rentang Warna Zona
+@include('rentang_warna_zona.php');
 // Route::get('/home', 'HomeController@index')->name('home');
